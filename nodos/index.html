@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>EjemploGrilla</title>
+	<script src="./funciones.js"></script>
+	<link rel="stylesheet" href="./hojaEstilos.css">
+</head>
+<body>
+	<input id="btnAgregar" type="button" value="Agregar"><br>
+	<label class="negrita">Lista de personas</label>
+	<div class="personas">
+		<table id="tablaPersonas" border=1>
+			<thead class="cabecera">
+				<th class="cabecera">Nombre</th>
+				<th class="cabecera">Apellido</th>
+				<th class="cabecera">Fecha</th>
+				<th class="cabecera">Telefono</th>
+				<th class="cabecera">Accion</th>
+			</thead>
+			<tbody id="tbodyPersonas">
+			</tbody>
+		</table>
+		<div id="fondoTransparente" class="contenedor fondoTransparente" hidden>
+			<div id="divAgregar" class="contenedor">
+				<input id="btnCerrar" class="cerrar" type="button" value="X"><br>
+				<label id="lblNombre">Nombre</label><br>
+				<input type="text" class="sinError" id="inpNombre" placeholder="Tu nombre..."><br>
+				<label id="lblApellido">Apellido</label><br>
+				<input type="text" class="sinError" id="inpApellido" placeholder="Tu apellido..."><br>
+				<label id="lblNombre">Fecha</label><br>
+				<input type="date" class="sinError" id="inpFecha"><br>
+				<label id="lblNombre">Telefono</label><br>
+				<input type="number" class="sinError" id="inpTelefono" placeholder="Telefono..."><br>
+				<input type="button" class="boton verde" id="btnGuardar" value="Guardar">
+			</div>
+		</div>
+	</div>
+</body>
+</html>
