@@ -88,10 +88,6 @@ function guardar(){
 		};
 		var nuevoId = parseInt(document.getElementById("tbodyPersonas").lastElementChild.getAttribute("id"))+1;
 		agregarPersonaLista(persona, nuevoId);
-		nombre.className= "sinError";
-		apellido.className= "sinError";
-		telefono.className= "sinError";
-
 		agregarPersonaLocalStorage(persona, nuevoId);
 		cerrar();
 	}
@@ -154,9 +150,11 @@ function modificarListener(event){
 		persona[tds[i].getAttribute("name")]=tds[i].innerHTML;
 	}
 	document.getElementById("fondoTransparente").hidden = false;
-	document.getElementById("btnGuardar").removeEventListener("click", guardar);
-	document.getElementById("btnGuardar").removeEventListener("click", modificar);
-	document.getElementById("btnGuardar").addEventListener("click", modificar);
+	var btnGuardar = document.getElementById("btnGuardar")
+	btnGuardar.removeEventListener("click", guardar);
+	btnGuardar.removeEventListener("click", modificar);
+	btnGuardar.addEventListener("click", modificar);
+	btnGuardar.setAttribute("idModificando", tr.getAttribute("id"));
 	document.getElementById("inpNombre").value = persona["nombre"];
 	document.getElementById("inpApellido").value = persona["apellido"];
 	document.getElementById("inpFecha").value = persona["fecha"].split("/").join("-");
@@ -164,9 +162,35 @@ function modificarListener(event){
 }
 
 function modificar(event){
-	console.log(event.target.parentNode);
+	var nombre = document.getElementById("inpNombre");
+	var apellido = document.getElementById("inpApellido");
+	var telefono = document.getElementById("inpTelefono");
+	var fecha = document.getElementById("inpFecha")
+	var tr = document.getElementById(event.target.getAttribute("idModificando"));
+	var tds = tr.childNodes;
+
+	if(validarCampos()){
+		persona = {
+			"nombre": nombre.value,
+			"apellido": apellido.value,
+			"fecha": fecha.value.split("-").join("/"),
+			"telefono": telefono.value
+		};
+		for(var i=0;i<tds.length-1;i++){
+			tds[i].innerHTML = persona[tds[i].getAttribute("name")];
+		}
+		event.target.removeAttribute("idModificando");
+		modificarPersonaLocalStorage(persona, event.target.getAttribute("idModificando"));
+		cerrar();
+	}
 }
 
+
+function modificarPersonaLocalStorage(persona, id){
+	var personas = JSON.parse(localStorage.getItem("personas"));
+	personas[id] = persona;
+	localStorage.setItem("personas", JSON.stringify(personas));
+}
 
 
 function borrarPersonaLocalStorage(id){
@@ -183,6 +207,10 @@ function agregarPersonaLocalStorage(persona, id){
 
 function cerrar(){
 	document.getElementById("fondoTransparente").hidden = true;
+	document.getElementById("inpNombre").className= "sinError";
+	document.getElementById("inpApellido").className= "sinError";
+	document.getElementById("inpTelefono").className= "sinError";
+	document.getElementById("inpFecha").className= "sinError";
 }
 
 function agregar(){
