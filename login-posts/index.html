@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Index</title>
+    <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="./js/funcionesIndex.js"></script>
+	<link rel="stylesheet" href="./css/hojaEstilosIndex.css">
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <img class="imgUsr" id="imagenUser">
+            <a id="btnNewPost">New Post</a>
+        </div>
+    </header>
+    <main>
+    <div id="fondoTransparente" class="contenedor fondoTransparente" hidden>
+        <div id="divAgregar" class="contenedor">
+            <input id="btnCerrar" class="cerrar" type="button" value="X"><br>
+            <label id="lblTitle">Post Title</label><br>
+            <input type="text" class="sinError" id="inpTitle" placeholder="Tittle..."><br>
+            <label id="lblHeader">Post Header</label><br>
+            <input type="text" class="sinError" id="inpHeader" placeholder="Header..."><br>
+            <label id="lblText">Post Text</label><br>
+            <textarea class="sinError" id="inpText"></textarea><br>
+            <label id="lblImg">Image</label><br>
+            <img id="preview" class="preview"><input type="file" id="inpImg" accept="image/png, image/jpeg" /><br>
+            <input type="button" class="boton" id="btnPost" value="Post">
+
+        </div>
+    </div>
+    </div>
+    <div id="divPosts"></div>
+    <div id="fondo" class="fondo" hidden>
+        <div id="spinner" class="loader" hidden></div>
+    </div>
+    </main>
+    <div id="divPosts">
+
+    </div>
+</body>
+</html>
